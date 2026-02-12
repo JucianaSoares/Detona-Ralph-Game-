@@ -25,7 +25,7 @@ const state = {
   },
 };
 
-let backgroundMusic = new Audio("SRC/Audios/BackgroundMusic.mp3");
+let backgroundMusic = new Audio("BackgroundMusic.mp3");
 backgroundMusic.loop = true;
 backgroundMusic.volume = 0.3;
 let musicPlaying = false;
@@ -128,17 +128,17 @@ function endGame() {
 
 /* 🔊 Sons */
 function playSound() {
-  let audio = new Audio("SRC/Audios/audio_hit.m4a");
+  let audio = new Audio("audio_hit.m4a");
   audio.volume = 0.2;
   audio.play();
 }
 function playGameOverSound() {
-  let audio = new Audio("SRC/Audios/gameOver.mp3");
+  let audio = new Audio("gameOver.mp3");
   audio.volume = 0.5;
   audio.play();
 }
 function playMedalSound(position) {
-  const files = ["SRC/Audios/ouro.mp3", "SRC/Audios/prata.mp3", "SRC/Audios/bronze.mp3"];
+  const files = ["ouro.mp3", "prata.mp3", "bronze.mp3"];
   if (files[position]) {
     let audio = new Audio(files[position]);
     audio.volume = 0.4;
