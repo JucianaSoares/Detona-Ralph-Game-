@@ -28,8 +28,6 @@ const state = {
 let backgroundMusic = new Audio("BackgroundMusic.mp3");
 backgroundMusic.loop = true;
 backgroundMusic.volume = 0.3;
-let musicPlaying = false;
-
 /* 🎵 Música */
 function startBackgroundMusic() {
   backgroundMusic.play().then(() => {
@@ -131,12 +129,13 @@ function playSound() {
   let audio = new Audio("audio_hit.m4a");
   audio.volume = 0.2;
   audio.play();
-}
+   }
 function playGameOverSound() {
   let audio = new Audio("gameOver.mp3");
   audio.volume = 0.5;
   audio.play();
 }
+
 function playMedalSound(position) {
   const files = ["ouro.mp3", "prata.mp3", "bronze.mp3"];
   if (files[position]) {
