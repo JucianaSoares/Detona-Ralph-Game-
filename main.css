@@ -1,7 +1,7 @@
 .container{display: flex;
   flex-direction: column;
   height: 100vh;
-  background-image: url("../Imagens/wall.png");
+  background-image: url("wall.png");
   margin: auto;
 }
 body{
@@ -37,10 +37,10 @@ h3{font-size: 25px;}
   width: 150px;
   border: 1px solid black;
   background-color: #1aeaa5;
-  background-image: url("../Imagens/wall.png");
+  background-image: url("wall.png");
 }
 .enemy{
-  background-image: url("../Imagens/ralph.png");
+  background-image: url("ralph.png");
   background-color: #121214;
   background-size: cover;
 }
@@ -56,7 +56,7 @@ h3{font-size: 25px;}
 #lista-pontos{
   margin-top: 25px;
   padding: 10px;
-  background-image: url("../Imagens/wall.png");
+  background-image: url("wall.png");
   color: #080707;
   border-radius: 8px;
   font-size: 30px;
