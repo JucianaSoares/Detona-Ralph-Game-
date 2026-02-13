@@ -371,7 +371,9 @@ h3{color: #998F8F;}
 }
 /* Mensagem de Game Over */
 .gameover {
-  font-family: 'Press Start 2P', cursive;
+  opacity: 1;
+display: block;
+font-family: 'Press Start 2P', cursive;
   font-size: 22px;
   color: #fff;
   text-align: center;
