@@ -2,8 +2,10 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-image: url("../assets/wall.png"); /* corrigido */
-  margin: auto;
+  width: 100%; /* Garante que o jogo não passe da largura da tela */
+  max-width: 600px; /* Opcional: define um limite para não ficar estranho em tablets */
+  margin: 0 auto;   /* Centraliza o jogo na tela */
+  background-image: url("../assets/wall.png");
 }
 
 body{
