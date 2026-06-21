@@ -191,3 +191,7 @@ document.getElementById("dificil").addEventListener("click", () => setDifficulty
 
 initialize();
 
+      
+
+
+
