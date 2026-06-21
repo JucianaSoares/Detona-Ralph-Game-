@@ -87,7 +87,7 @@ function addListenerHitBox() {
         state.values.result++;
         atualizarPlacar();
         state.values.hitPosition = null;
-        playSound()
+        playSound();
       }
     });
   });
