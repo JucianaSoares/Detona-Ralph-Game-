@@ -52,6 +52,13 @@ function toggleMusic() {
   musicPlaying ? stopBackgroundMusic() : startBackgroundMusic();
 }
 
+/* 🔊 Função para tocar som de acerto */
+function playSound() {
+  audioHit.currentTime = 0;
+  audioHit.play().catch(e => console.log("Som bloqueado:", e));
+}
+
+
 /* 🎮 Jogo */
 function startGame() {
   novoJogo();
@@ -80,8 +87,7 @@ function addListenerHitBox() {
         state.values.result++;
         atualizarPlacar();
         state.values.hitPosition = null;
-        audioHit.currentTime = 0;
-        audioHit.play().catch(e => console.log("Som bloqueado:", e));
+        playSound()
       }
     });
   });
