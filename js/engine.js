@@ -52,12 +52,12 @@ function toggleMusic() {
   musicPlaying ? stopBackgroundMusic() : startBackgroundMusic();
 }
 
-/* 🔊 Função para tocar som de acerto */
 function playSound() {
-  audioHit.currentTime = 0;
-  audioHit.play().catch(e => console.log("Som bloqueado:", e));
+  // Cria uma nova instância de áudio toda vez para evitar conflito com o anterior
+  const hit = new Audio("assets/audio_hit.m4a");
+  hit.volume = 0.5;
+  hit.play().catch(e => console.log("Erro no som:", e));
 }
-
 
 /* 🎮 Jogo */
 function startGame() {
@@ -88,6 +88,11 @@ function addListenerHitBox() {
         atualizarPlacar();
         state.values.hitPosition = null;
         playSound();
+
+ // Garante que a música não pare
+        if (musicPlaying && backgroundMusic.paused) {
+          backgroundMusic.play();
+       }
       }
     });
   });
