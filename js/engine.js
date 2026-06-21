@@ -25,7 +25,7 @@ const state = {
   },
 };
 
-let backgroundMusic = new Audio("BackgroundMusic.mp3");
+let backgroundMusic = new Audio("assets/BackgroundMusic.mp3");
 backgroundMusic.loop = true;
 backgroundMusic.volume = 0.3;
 /* 🎵 Música */
@@ -130,12 +130,12 @@ function endGame() {
 
 /* 🔊 Sons */
 function playSound() {
-  let audio = new Audio("audio_hit.m4a");
+  let audio = new Audio("assets/audio_hit.m4a");
   audio.volume = 0.2;
   audio.play();
    }
 function playGameOverSound() {
-  let audio = new Audio("gameOver.mp3");
+  let audio = new Audio("assets/gameOver.mp3");
   audio.volume = 0.5;
   audio.play();
 }
