@@ -30,7 +30,7 @@ let backgroundMusic = new Audio("assets/BackgroundMusic.mp3");
 backgroundMusic.loop = true;
 backgroundMusic.volume = 0.3;
 
-const audioHit = new Audio("assets/audio_hit.m4a");
+const audioHit = new Audio("assets/audio_hit.mp3");
 const audioGameOver = new Audio("assets/gameOver.mp3");
 
 /* 🎵 Música */
@@ -53,10 +53,9 @@ function toggleMusic() {
 }
 
 function playSound() {
-  // Cria uma nova instância de áudio toda vez para evitar conflito com o anterior
-  const hit = new Audio("assets/audio_hit.m4a");
-  hit.volume = 0.5;
-  hit.play().catch(e => console.log("Erro no som:", e));
+  audioHit.pause();        // Pausa se já estiver tocando
+  audioHit.currentTime = 0; // Volta para o início
+  audioHit.play().catch(e => console.log("Erro no som:", e));
 }
 
 /* 🎮 Jogo */
@@ -88,11 +87,6 @@ function addListenerHitBox() {
         atualizarPlacar();
         state.values.hitPosition = null;
         playSound();
-
- // Garante que a música não pare
-        if (musicPlaying && backgroundMusic.paused) {
-          backgroundMusic.play();
-       }
       }
     });
   });
