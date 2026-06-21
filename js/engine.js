@@ -81,7 +81,7 @@ function addListenerHitBox() {
         atualizarPlacar();
         state.values.hitPosition = null;
         audioHit.currentTime = 0;
-        audioHit.play();
+        audioHit.play().catch(e => console.log("Som bloqueado:", e));
       }
     });
   });
