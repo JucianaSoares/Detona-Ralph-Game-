@@ -1,105 +1,122 @@
-
-/* 1. Reset básico para o site não ter bordas brancas estranhas */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-/* 2. Centraliza o jogo na página e dá um fundo elegante */
 body {
-  font-family: 'Press Start 2P', cursive;
-  text-align: center;
-  background-color: #2c3e50; /* Cor de fundo para telas grandes */
+  background-color: #1a1a1a;
   display: flex;
   justify-content: center;
+  align-items: center;
   min-height: 100vh;
+  font-family: 'Press Start 2P', cursive;
+  padding: 10px;
 }
 
-/* 3. O Container agora é responsivo */
+/* 2. Container (O ajuste de largura aqui resolve o problema do celular) */
 .container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 500px; /* O jogo nunca será maior que 500px, mesmo no laptop */
+  width: 100%;           /* Preenche a tela toda no celular */
+  max-width: 900px;      /* Limite máximo confortável */
+  background: #2c3e50;
+  border: 5px solid #000;
+  border-radius: 10px;
+  padding: 15px;
+  display: flex;         /* O segredo está aqui */
+  flex-direction: column; /* Padrão celular: empilhado */
+  gap: 15px;
   background-image: url("../assets/wall.png");
   background-size: cover;
-  margin: 0 auto;
 }
 
-/* 4. O Painel dos quadrados */
+/* 4. Estilização do Jogo */
 .panel {
-  display: flex;
-  flex-wrap: wrap; /* Faz os quadrados pularem linha se a tela for pequena */
-  justify-content: center;
-  gap: 5px;
-  margin: 1rem 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  width: 100%;
+  max-width: 400px; /* Mantém o jogo quadrado */
+  margin: 10px auto;
+  box-sizing: border-box;
 }
 
-/* 5. Quadrados adaptáveis (O segredo aqui!) */
+.panel-row {
+  display: contents; /* Isso faz com que os quadrados "pulem" essa div e entrem direto no grid do pai */
+}
+
 .square {
-  height: 28vw; /* Proporcional à largura da tela */
-  width: 28vw;  /* Proporcional à largura da tela */
-  max-height: 120px; /* Limite para não ficar gigante no computador */
-  max-width: 120px;
-  border: 1px solid black;
+  /* 1. Força a proporção 1:1 (quadrado perfeito) independente da tela */
+  aspect-ratio: 1 / 1; 
+  
+  /* 2. Garante que o quadrado sempre preencha o espaço da célula do grid */
+  width: 100%; 
+  height: auto;
+  
+  border: 3px solid #000;
   background-color: #1aeaa5;
   background-image: url("../assets/wall.png");
   background-size: cover;
-}
-
-.enemy {
-  background-image: url("../assets/ralph.png");
-  background-color: #121214;
-  background-size: cover;
-}
-
-.menu-lives{
+  background-position: center; /* Garante que a imagem do "Ralph" fique centralizada no quadrado */
+  cursor: pointer;
+  
+  /* 3. Evita que o conteúdo dentro do quadrado (se houver) force o esticamento */
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.menu-time h2:nth-child(2),
-.menu-score h2:nth-child(2){
-  margin-top: 1rem;
-}
-#lista-pontos{
-  margin-top: 25px;
-  padding: 10px;
-  background-image: url("../assets/wall.png");
-  color: #080707;
-  border-radius: 8px;
-  font-size: 30px;
-  width: 500px;
-  height: 400px;
-  margin: 80px;
-  line-height: 1.6;
-  white-space: normal;
-  word-wrap: break-word;
-  max-width: 100%;
-  overflow-y: auto;
-  border: 1px solid #ccc;
+
+#lista-pontos { max-height: 150px; overflow-y: auto; font-size: 10px; }
+
+.enemy {
+  background-image: url("../assets/ralph.png");
+  background-color: #121214;
 }
 
-#high-score{
+#high-score {
   color: #6D9D82;
-  font-weight: bold;
-  margin-top: 10px;
-  padding: 35px;
-  font-size: 25px;
-  font-weight: bold;
-  height: 150px;
-  
+  font-size: 16px;
+  margin: 10px 0;
+  padding: 10px;
 }
+
+/* --- 4. CONTROLES E BOTÕES --- */
+#painel-controles { display: flex; flex-direction: column; gap: 8px; padding: 10px; }
+button { width: 100%; padding: 10px; border-radius: 6px; cursor: pointer; font-family: 'Press Start 2P', cursive; }
+
+h2, h3 { margin: 5px 0; font-size: 14px; }
+button { font-family: 'Press Start 2P', cursive; cursor: pointer; padding: 8px; }
+
+/* 5. Menu e Controles */
+.menu {
+  display: flex;
+  justify-content: space-between;
+  background: #ad5941;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+#painel-controles div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+#score, #time-left { font-size: 18px; }
+
+/* --- 5. TABELA DE RANKING --- */
+#ranking {
+  width: 100%;
+  margin: 10px auto;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+#ranking th, #ranking td { border: 1px solid #ddd; padding: 5px; }
+
+/* --- 6. ANIMAÇÕES (MANTIDAS DO SEU CÓDIGO) --- */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+/* (As outras animações e estilos de classes permanecem iguais) */
+
  #limpar-historico{font-size: 20px;}
 
- #painel-controles{
-   padding: 15px;
-   margin-bottom: 20px;
-   border-radius: 8px;
-   text-align: center;
-   box-shadow: 0 2px 6px rgba(0, 0,0,0.2);
- }
  #player-name{
    padding: 6px;
    margin: 8px;
@@ -107,7 +124,7 @@ body {
    border: 1px solid #ccc;
    border-radius: 4px;
    cursor: pointer;
-   
+
    font-size: 15px;
  }
  #painel-controles button{
@@ -157,6 +174,7 @@ font-family: 'Press Start 2P', cursive;
    background-color: #689F38;
    transform: scale(1.1);
  }
+
 #medio{
   background-color: #FFC107;
   color: black;
@@ -208,38 +226,11 @@ font-family: 'Press Start 2P', cursive;
    animation: pulse 1.5s infinite;
 }
 
-
 #start-game:hover {
   background-color: #ff9900;   /* laranja ao passar o mouse */
   transform: scale(1.1);       /* efeito de zoom */
 }
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(255, 204, 0, 0.7);
-  }
-  50% {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px 10px rgba(255, 204, 0, 0.4);
-  }
-  100% {
-    transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(255, 204, 0, 0.7);
-  }
-}
 
-#ranking{
-  margin: 20px auto;
-  border-collapse: collapse;
-  width: 90%;
-  background:#fff;
-  box-shadow: 0 2px 6px rgba(0, 0,0,0.1);
-}
-#ranking th,
-#ranking td{
-  border: 1px solid #ddd;
-  padding: 8px;
-}
 #ranking th{
   background-color: #3498db;
   color: white;
@@ -262,24 +253,12 @@ font-family: 'Press Start 2P', cursive;
   font-weight: bold;
 color: #fff;
   animation: pulse 1s infinite;
-  
+
 }
 
-button{
-  margin-top: 15px;
-  padding: 10px 20px;
-  background-color: #3498db;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px; 
-  
-}
 button:hover{
   background-color: #2980b9;
 }
-h3{color: #998F8F;}
 
 #painel-mensagem{
  font-family: 'Press Start 2P', cursive;
@@ -433,3 +412,15 @@ font-family: 'Press Start 2P', cursive;
     background-color: #cd7f32;
     font-weight: bold;
   }
+
+Media Query: A Mágica do Horizontal (Para telas maiores) */
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row; /* Muda para lado a lado */
+    align-items: flex-start;
+  }
+  
+  /* Faz o painel do jogo ocupar o lado esquerdo e os controles o direito */
+  .panel { order: 1; }
+  #painel-controles { order: 2; width: 300px; }
+}
